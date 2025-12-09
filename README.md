@@ -1,69 +1,189 @@
-🧮 Web Service RESTful de Calculadora com Spring Boot
+# 🧮 Web Service RESTful de Calculadora com Spring Boot
 
-Este repositório contém a implementação de um Sistema Distribuído Cliente-Servidor. O serviço backend (servidor) é uma API REST desenvolvida em Java com Spring Boot, e o frontend (cliente) é uma interface gráfica em HTML/JavaScript que consome esta API.
+## 📋 Sobre o Projeto
+Este repositório contém a implementação de um **Sistema Distribuído Cliente-Servidor** desenvolvido como parte das atividades da disciplina de Sistemas Distribuídos. O projeto consiste em uma calculadora web onde o cliente (interface HTML/JavaScript) se comunica com o servidor (API Java/Spring Boot) através de APIs RESTful utilizando o protocolo HTTP.
 
-🌟 Visão Geral do Projeto
+## 🎯 Objetivo
+Demonstrar na prática os conceitos fundamentais de sistemas distribuídos através da implementação de um sistema cliente-servidor completo, destacando:
+- Separação clara entre camadas (apresentação e lógica de negócio)
+- Comunicação assíncrona entre componentes distribuídos
+- Princípios da arquitetura RESTful
+- Tratamento básico de exceções em APIs
 
-O projeto demonstra a aplicação dos conceitos de Sistemas Distribuídos (SD) e a arquitetura RESTful, garantindo que a lógica de negócio (cálculos) e a camada de apresentação (interface) sejam independentes e fracamente acopladas.
+## 🛠️ Tecnologias Utilizadas
 
-    Servidor: Spring Boot (Java)
+| Componente | Tecnologia | Versão | Função |
+|------------|------------|--------|---------|
+| **Linguagem Backend** | Java | 1.8 | Lógica do servidor e API |
+| **Framework** | Spring Boot | 2.1.6.RELEASE | Criação da API REST |
+| **Gerenciador de Dependências** | Apache Maven | - | Build e gerenciamento |
+| **Frontend** | HTML5 + JavaScript | - | Interface do usuário |
+| **Servidor Web** | Tomcat (embarcado) | - | Hospedagem da aplicação |
+| **Protocolo** | HTTP | 1.1 | Comunicação cliente-servidor |
 
-    Cliente: HTML5 + JavaScript (comunicação via fetch())
+## 📁 Estrutura do Projeto
 
-    Comunicação: HTTP GET usando Path Variables.
-
-🛠️ Tecnologias Utilizadas
-Componente	Tecnologia	Versão	Função
-Linguagem	Java	1.8	Lógica do backend
-Framework	Spring Boot	2.1.6.RELEASE	Criação rápida da API REST
-Build/Dependências	Apache Maven	(Qualquer versão recente)	Gerenciamento do projeto
-Cliente	HTML5/JavaScript	N/A	Interface de Usuário (UI) e requisições
-🚀 Como Executar o Projeto
-
-Siga os passos abaixo para compilar e iniciar a aplicação.
-1. Pré-requisitos
-
-Certifique-se de ter o Java 8 (ou superior) e o Apache Maven instalados em sua máquina.
-2. Compilação e Empacotamento
-
-Navegue até o diretório raiz do projeto (/calculadora) no seu terminal e execute o Maven para limpar, compilar e empacotar o projeto em um arquivo JAR executável:
-''' Bash
-mvn clean install
-'''
-
-3. Execução do Servidor
-
-Execute o aplicativo usando o plugin do Spring Boot, que iniciará o servidor web embutido (Tomcat) na porta padrão 8080:
-'''Bash
-
-mvn spring-boot:run
-'''
-
-🖥️ Acessando a Interface Cliente
-
-Após iniciar o servidor (Passo 3), abra seu navegador e acesse a interface gráfica:
-
-http://localhost:8080/index.html
-
-A interface usará JavaScript para enviar requisições HTTP GET aos endpoints listados acima.
-📂 Estrutura do Projeto
-
-A estrutura de diretórios segue o padrão de uma aplicação Maven e Spring Boot:
-'''
 calculadora/
 ├── src/main/
 │   ├── java/com/calculadora/
-│   │   ├── Main.java         <-- Controlador REST e Entry Point
-│   │   └── CalculatorController.java (Removido para seguir o roteiro)
+│   │   └── Main.java              # Classe principal
 │   └── resources/
 │       └── static/
-│           └── index.html    <-- Interface Cliente (Frontend)
-├── pom.xml                   <-- Configuração e Dependências Maven
-└── target/                   <-- Artefato executável (.jar)
-'''
+│           └── index.html         # Interface do cliente
+├── pom.xml                        # Configuração Maven
+└── README.md                      # Documentação
+
+## 🔌 Endpoints da API
+
+| Operação | Método HTTP | Endpoint | Exemplo |
+|----------|-------------|----------|---------|
+| **Soma** | GET | `/somar/{a}/{b}` | `/somar/10/5` |
+| **Subtração** | GET | `/subtrair/{a}/{b}` | `/subtrair/5/3` |
+| **Multiplicação** | GET | `/multiplicar/{a}/{b}` | `/multiplicar/4/3` |
+| **Divisão** | GET | `/dividir/{a}/{b}` | `/dividir/9/3` |
+
+## 🚀 Como Executar o Projeto
+
+### Pré-requisitos
+- **Java 8** ou superior
+- **Apache Maven**
+- Navegador web moderno
+
+### Passo a Passo
+
+1. **Clone o projeto**
+   ```bash
+   git clone https://github.com/seu-usuario/calculadora.git
+   cd calculadora
+   ```
+   Compile o projeto
+bash
+
+mvn clean install
+
+Execute o servidor
+bash
+
+mvn spring-boot:run
+
+    Acesse a aplicação
+
+        Interface Web: http://localhost:8080/index.html
+
+        API: http://localhost:8080/somar/10/5
+
+💻 Código Fonte
+Main.java (Servidor Spring Boot)
+java
+
+package com.calculadora;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@SpringBootApplication
+public class Main {
+    
+    @GetMapping("/somar/{a}/{b}")
+    public String somar(@PathVariable double a, @PathVariable double b) {
+        return "Resultado: " + (a + b);
+    }
+    
+    @GetMapping("/subtrair/{a}/{b}")
+    public String subtrair(@PathVariable double a, @PathVariable double b) {
+        return "Resultado: " + (a - b);
+    }
+
+    @GetMapping("/multiplicar/{a}/{b}")
+    public String multiplicar(@PathVariable double a, @PathVariable double b) {
+        return "Resultado: " + (a * b);
+    }
+
+    @GetMapping("/dividir/{a}/{b}")
+    public String dividir(@PathVariable double a, @PathVariable double b) {
+        if (b == 0) {
+            return "Erro: Divisão por zero!";
+        }
+        return "Resultado: " + (a / b);
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
+    }
+}
+
+index.html (Interface do Cliente)
+html
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Web</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 400px; margin: auto; }
+        input, button { margin: 5px 0; padding: 8px; width: 100%; }
+        button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora Web</h2>
+        <input type="number" id="num1" placeholder="Número 1">
+        <input type="number" id="num2" placeholder="Número 2">
+        <button onclick="calcular('somar')">Somar</button>
+        <button onclick="calcular('subtrair')">Subtrair</button>
+        <button onclick="calcular('multiplicar')">Multiplicar</button>
+        <button onclick="calcular('dividir')">Dividir</button>
+        <p id="resultado"></p>
+    </div>
+    <script>
+        function calcular(operacao) {
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+            
+            fetch(`http://localhost:8080/${operacao}/${num1}/${num2}`)
+                .then(response => response.text())
+                .then(data => document.getElementById("resultado").innerText = data)
+                .catch(error => console.error("Erro:", error));
+        }
+    </script>
+</body>
+</html>
+
+
+
+┌─────────────────┐     HTTP GET     ┌─────────────────┐
+│                 │──────────────────▶│                 │
+│   Cliente Web   │                  │   Servidor API  │
+│   (HTML/JS)     │◀─────────────────│   (Spring Boot) │
+│                 │   JSON/Texto     │                 │
+└─────────────────┘                  └─────────────────┘
 
 📝 Autor
 
-    Pedro Wilson
+Pedro Wilson
 
-    Disciplina: Sistemas Distribuídos - UFC
+    Matrícula: 541491
+
+    Curso: Engenharia de Computação
+
+    Disciplina: Sistemas Distribuídos
+
+    Instituição: Universidade Federal do Ceará (UFC)
+
+    Data de Conclusão: 08 de dezembro de 2025
+
+📚 Referências
+
+    Documentação oficial Spring Boot: https://spring.io/projects/spring-boot
+
+    REST API Tutorial: https://restfulapi.net/
+
+    MDN Web Docs (Fetch API): https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
