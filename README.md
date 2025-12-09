@@ -22,7 +22,7 @@ Demonstrar na prática os conceitos fundamentais de sistemas distribuídos atrav
 | **Protocolo** | HTTP | 1.1 | Comunicação cliente-servidor |
 
 ## 📁 Estrutura do Projeto
-
+```
 calculadora/
 ├── src/main/
 │   ├── java/com/calculadora/
@@ -32,15 +32,8 @@ calculadora/
 │           └── index.html         # Interface do cliente
 ├── pom.xml                        # Configuração Maven
 └── README.md                      # Documentação
+```
 
-## 🔌 Endpoints da API
-
-| Operação | Método HTTP | Endpoint | Exemplo |
-|----------|-------------|----------|---------|
-| **Soma** | GET | `/somar/{a}/{b}` | `/somar/10/5` |
-| **Subtração** | GET | `/subtrair/{a}/{b}` | `/subtrair/5/3` |
-| **Multiplicação** | GET | `/multiplicar/{a}/{b}` | `/multiplicar/4/3` |
-| **Divisão** | GET | `/dividir/{a}/{b}` | `/dividir/9/3` |
 
 ## 🚀 Como Executar o Projeto
 
@@ -51,29 +44,31 @@ calculadora/
 
 ### Passo a Passo
 
-1. **Clone o projeto**
-   ```bash
-   git clone https://github.com/seu-usuario/calculadora.git
-   cd calculadora
-   ```
-   Compile o projeto
-bash
+**Clone o projeto**
+```bash
+git clone https://github.com/seu-usuario/calculadora.git
+cd calculadora
+```
+Compile o projeto
 
+```bash
 mvn clean install
+```
 
 Execute o servidor
-bash
-
+```bash
 mvn spring-boot:run
+```
 
-    Acesse a aplicação
-
-        Interface Web: http://localhost:8080/index.html
-
-        API: http://localhost:8080/somar/10/5
+ Acesse a aplicação
+ ```
+Interface Web: http://localhost:8080/index.html
+API: http://localhost:8080/somar/10/5
+```
 
 💻 Código Fonte
 Main.java (Servidor Spring Boot)
+```
 java
 
 package com.calculadora;
@@ -115,8 +110,10 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 }
+```
 
 index.html (Interface do Cliente)
+```
 html
 
 <!DOCTYPE html>
@@ -157,14 +154,15 @@ html
 </body>
 </html>
 
-
-
+```
+```
 ┌─────────────────┐     HTTP GET     ┌─────────────────┐
-│                 │──────────────────▶│                 │
+│                 │─────────────────▶│                 │
 │   Cliente Web   │                  │   Servidor API  │
 │   (HTML/JS)     │◀─────────────────│   (Spring Boot) │
 │                 │   JSON/Texto     │                 │
 └─────────────────┘                  └─────────────────┘
+```
 
 📝 Autor
 
