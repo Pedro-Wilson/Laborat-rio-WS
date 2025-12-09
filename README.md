@@ -27,8 +27,7 @@ Certifique-se de ter o Java 8 (ou superior) e o Apache Maven instalados em sua m
 2. Compilação e Empacotamento
 
 Navegue até o diretório raiz do projeto (/calculadora) no seu terminal e execute o Maven para limpar, compilar e empacotar o projeto em um arquivo JAR executável:
-'''Bash
-
+''' Bash
 mvn clean install
 '''
 
